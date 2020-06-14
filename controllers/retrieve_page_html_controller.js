@@ -36,8 +36,8 @@ router.get("/retrieve_page_html", require("../config/Auth/authenticate"), (req, 
 //for handling internal request after user selects page
 router.post("/retrieve_page_html:page_id", (req, res) => {
     if(mongoose.connection.readyState == 1){
-        const page_id = req.params.page_id;
-        Data.findById(page_id, (err, page) => {
+        const _page_id = req.params.page_id;
+        Data.findById(_page_id, (err, page) => {
             if (err)
                 res.send("Sorry! That page could not be found: " + err);
             res.status(200).json({
@@ -51,5 +51,4 @@ router.post("/retrieve_page_html:page_id", (req, res) => {
         })
    }
 })
-
 module.exports = router;
